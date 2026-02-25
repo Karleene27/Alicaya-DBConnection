@@ -117,7 +117,6 @@ body {
     animation: fadeIn 0.5s ease-out;
 }
 
-/* Form Styles */
 .form {
     max-width: 600px;
     margin: 0 auto;
@@ -163,7 +162,6 @@ body {
     margin-top: 30px;
 }
 
-/* Alert Styles */
 .alert {
     padding: 16px 20px;
     border-radius: 12px;
@@ -177,7 +175,6 @@ body {
     color: #b91c1c;
 }
 
-/* Table Styles */
 .table-header {
     display: flex;
     justify-content: space-between;
@@ -248,7 +245,6 @@ body {
     padding: 40px !important;
 }
 
-/* Button variants */
 .btn-primary {
     background: #2563eb;
     color: white;
