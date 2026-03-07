@@ -1,4 +1,12 @@
-<?php 
+<?php
+session_start();
+
+// If not logged in, redirect to login
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
+    exit();
+}
+
 include 'db.php'; 
 
 function get_count($conn, $query, $key) {
@@ -15,7 +23,7 @@ $services = get_count($conn, "SELECT COUNT(*) AS c FROM services", 'c');
 $bookings = get_count($conn, "SELECT COUNT(*) AS c FROM bookings", 'c');
 $revenue  = get_count($conn, "SELECT IFNULL(SUM(amount_paid),0) AS s FROM payments", 's');
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -23,9 +31,13 @@ $revenue  = get_count($conn, "SELECT IFNULL(SUM(amount_paid),0) AS s FROM paymen
     <title>Dashboard</title>
 </head>
 <body>
-<?php include 'nav.php'; ?>
+    <?php include 'nav.php'; ?>
+    
     <div class="container">
-        <h2>Dashboard Overview</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h2>Dashboard Overview</h2>
+            <div style="color: #64748b;">Welcome, <?php echo $_SESSION['username']; ?>!</div>
+        </div>
         
         <div class="cards">
             <div class="card">
@@ -52,6 +64,7 @@ $revenue  = get_count($conn, "SELECT IFNULL(SUM(amount_paid),0) AS s FROM paymen
         <div class="actions">
             <a href="/assessment_beginner/pages/clients_add.php" class="btn">Add Client</a>
             <a href="/assessment_beginner/pages/bookings_create.php" class="btn">Create Booking</a>
+            <a href="/assessment_beginner/pages/services_list.php" class="btn">View Services</a>
         </div>
     </div>
 </body>
